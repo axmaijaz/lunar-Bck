@@ -19,7 +19,7 @@ env:
       EB_PACKAGE_S3_BUCKET_NAME : "ebs-bucket-t1"
       EB_APPLICATION_NAME       : "Lunar"
       EB_ENVIRONMENT_NAME       : "Lunar-env"
-      EB_version_label          : "EBS12AA"
+    
            
 jobs:
   deploy_staging:

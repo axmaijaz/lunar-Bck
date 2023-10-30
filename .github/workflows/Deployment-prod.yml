@@ -17,8 +17,8 @@ on:
 
 env:    
       EB_PACKAGE_S3_BUCKET_NAME : "ebs-bucket-t1"
-      EB_APPLICATION_NAME       : "Lunar"
-      EB_ENVIRONMENT_NAME       : "Lunar-env"
+      EB_APPLICATION_NAME       : "EBS-bck"
+      EB_ENVIRONMENT_NAME       : "EBS-bck-env"
     
            
 jobs:

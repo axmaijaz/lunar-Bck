@@ -17,8 +17,9 @@ on:
 
 env:    
       EB_PACKAGE_S3_BUCKET_NAME : "ebs-bucket-t1"
-      EB_APPLICATION_NAME       : "EBStest"
-      EB_ENVIRONMENT_NAME       : "EBStest-env"
+      EB_APPLICATION_NAME       : "TestEBS"
+      EB_ENVIRONMENT_NAME       : "TestEBS-env"
+      EB_version_label          : "EBS12AA"
            
 jobs:
   deploy_staging:
@@ -53,7 +54,7 @@ jobs:
           
         - name: Deploy to EBS Staging 
           run: |
-             aws elasticbeanstalk create-application-version --application-name ${{ env.EB_APPLICATION_NAME }}  --version-label "version@$(uuidgen | tr -d -)" --source-bundle S3Bucket=${{ env.EB_PACKAGE_S3_BUCKET_NAME }},S3Key=package.zip
+             aws elasticbeanstalk create-application-version --application-name ${{ env.EB_APPLICATION_NAME }}  --version-label ${{env.EB_version_label}} --source-bundle S3Bucket=${{ env.EB_PACKAGE_S3_BUCKET_NAME }},S3Key=package.zip
              aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --application-name ${{ env.EB_APPLICATION_NAME }} 
              echo 'Deployment to AWS Elastic Beanstalk complete.'
 
@@ -92,7 +93,7 @@ jobs:
           
         - name: Deploy to  Production Elastic Beanstalk
           run: |
-             aws elasticbeanstalk create-application-version --application-name ${{ env.EB_APPLICATION_NAME }}  --version-label "version@$(uuidgen | tr -d -)" --source-bundle S3Bucket=${{ env.EB_PACKAGE_S3_BUCKET_NAME }},S3Key=package.zip
+             aws elasticbeanstalk create-application-version --application-name ${{ env.EB_APPLICATION_NAME }}  --version-label  ${{env.EB_version_label}} --source-bundle S3Bucket=${{ env.EB_PACKAGE_S3_BUCKET_NAME }},S3Key=package.zip
              aws elasticbeanstalk update-environment --environment-name ${{ env.EB_ENVIRONMENT_NAME }} --application-name ${{ env.EB_APPLICATION_NAME }} 
              echo 'Deployment to production environment EBS'
 
